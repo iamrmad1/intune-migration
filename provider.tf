@@ -1,11 +1,14 @@
-provider "azurerm" {
-  features {}
+terraform {
+  required_providers {
+    microsoft365wp = {
+      source  = "microsoft365wp/microsoft365wp"
+      version = "0.2.8"
+    }
+  }
 }
 
-provider "azuread" {}
-
-provider "microsoft365" {
-  tenant_id     = var.tenant_id
+provider "microsoft365wp" {
   client_id     = var.client_id
   client_secret = var.client_secret
+  tenant_id     = var.tenant_id
 }
