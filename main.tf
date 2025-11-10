@@ -1,7 +1,7 @@
-resource "microsoft365wp_device_configuration_policy" "defender_policy" {
+resource "msgraph_device_management_configuration_policy" "defender_policy" {
   display_name = "Windows Defender Antivirus Policy"
   description  = "Basic Defender settings for Windows 10"
-  platforms    = ["windows10"]
+  platform     = "windows10"
 
   settings_catalog {
     settings = [
@@ -19,4 +19,5 @@ resource "microsoft365wp_device_configuration_policy" "defender_policy" {
       }
     ]
   }
+
 }
