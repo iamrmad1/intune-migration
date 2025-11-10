@@ -1,6 +1,6 @@
-resource "msgraph_device_management_configuration_policy" "defender_policy" {
-  display_name = "Windows Defender Antivirus Policy"
-  description  = "Basic Defender settings for Windows 10"
+resource "msgraph_device_management_configuration_policy" "windows_defender_policy" {
+  display_name = "Basic Windows Defender Policy"
+  description  = "Simple configuration profile for Windows 10"
   platform     = "windows10"
 
   settings_catalog {
@@ -19,5 +19,4 @@ resource "msgraph_device_management_configuration_policy" "defender_policy" {
       }
     ]
   }
-
 }
