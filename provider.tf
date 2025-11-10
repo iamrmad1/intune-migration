@@ -1,14 +1,14 @@
 terraform {
   required_providers {
-    msgraph = {
-      source  = "microsoftgraph/msgraph"
-      version = "0.13.0"
+    graph = {
+      source  = "YungSang/graph"
+      version = "0.1.8"
     }
   }
 }
 
-provider "msgraph" {
+provider "graph" {
+  tenant_id     = var.tenant_id
   client_id     = var.client_id
   client_secret = var.client_secret
-  tenant_id     = var.tenant_id
 }
