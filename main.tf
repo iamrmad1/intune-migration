@@ -1,7 +1,6 @@
-resource "microsoft365wp_device_configuration_policy" "defender_policy" {
+resource "microsoft365wp_device_configuration_policy_windows10" "defender_policy" {
   display_name = "Windows Defender Antivirus Policy"
   description  = "Simple configuration profile for Windows 10"
-  platforms    = ["windows10"]
 
   settings_catalog {
     settings = [
