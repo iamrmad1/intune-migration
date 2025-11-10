@@ -1,4 +1,4 @@
-name: Terraform CI/CD
+name: Deploy Intune Policy
 
 on:
   push:
