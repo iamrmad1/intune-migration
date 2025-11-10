@@ -1,4 +1,13 @@
-Connect-MgGraph -ClientId $env:CLIENT_ID -TenantId $env:TENANT_ID -ClientSecret $env:CLIENT_SECRET
+# Load required module
+Import-Module Microsoft.Graph
+
+# Create a credential object using Microsoft.Identity.Client (MSAL)
+$clientId = $env:CLIENT_ID
+$tenantId = $env:TENANT_ID
+$clientSecret = $env:CLIENT_SECRET
+
+# Authenticate using app credentials
+Connect-MgGraph -ClientId $clientId -TenantId $tenantId -ClientSecret $clientSecret
 Select-MgProfile -Name "beta"
 
 $body = @{
