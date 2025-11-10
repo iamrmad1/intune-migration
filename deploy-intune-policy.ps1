@@ -1,7 +1,4 @@
-Install-Module Microsoft.Graph -Force -Scope CurrentUser
-
-$secureSecret = ConvertTo-SecureString $env:CLIENT_SECRET -AsPlainText -Force
-Connect-MgGraph -ClientId $env:CLIENT_ID -TenantId $env:TENANT_ID -ClientSecret $secureSecret
+Connect-MgGraph -ClientId $env:CLIENT_ID -TenantId $env:TENANT_ID -ClientSecret $env:CLIENT_SECRET
 Select-MgProfile -Name "beta"
 
 $body = @{
