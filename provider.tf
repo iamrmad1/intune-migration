@@ -1,13 +1,13 @@
 terraform {
   required_providers {
-    microsoft365wp = {
-      source  = "terraprovider/microsoft365wp"
-      version = "0.2.8"
+    msgraph = {
+      source  = "microsoftgraph/msgraph"
+      version = "0.13.0"
     }
   }
 }
 
-provider "microsoft365wp" {
+provider "msgraph" {
   client_id     = var.client_id
   client_secret = var.client_secret
   tenant_id     = var.tenant_id
