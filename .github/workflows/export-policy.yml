@@ -50,19 +50,22 @@ jobs:
         $response.value | ConvertTo-Json -Depth 10 | Out-File "dev-policy.json"
 
     - name: Push dev-policy.json to repo using PAT
-      shell: pwsh
+      shell: bash
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "actions@github.com"
         git checkout main
-        git remote set-url origin https://x-access-token:$env:GH_PAT@github.com/${{ github.repository }}
-
-        if (-not (git diff --quiet --exit-code)) {
+    
+        # Set remote with PAT
+        git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
+    
+        # Commit and push if there are changes
+        if ! git diff --quiet; then
           git add dev-policy.json
           git commit -m "Exported policy from DEV"
-          git push
-        } else {
-          Write-Host "No changes to commit."
-        }
+          git push origin main
+        else
+          echo "No changes to commit."
+        fi
