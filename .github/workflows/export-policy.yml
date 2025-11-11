@@ -1,0 +1,28 @@
+name: Export Intune Policy from DEV
+
+on:
+  workflow_dispatch:
+
+jobs:
+  export:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Run export-policy.ps1
+      run: |
+        pwsh ./export-policy.ps1
+      env:
+        DEV_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        DEV_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        DEV_TENANT_ID: ${{ secrets.TENANT_ID }}
+
+    - name: Commit dev-policy.json
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "actions@github.com"
+        git add dev-policy.json
+        git commit -m "Exported policy from DEV"
+        git push
