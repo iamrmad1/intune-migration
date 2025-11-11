@@ -15,9 +15,9 @@ jobs:
       run: |
         pwsh ./export-policy.ps1
       env:
-        DEV_CLIENT_ID: ${{ secrets.CLIENT_ID }}
-        DEV_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-        DEV_TENANT_ID: ${{ secrets.TENANT_ID }}
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        TENANT_ID: ${{ secrets.TENANT_ID }}
 
     - name: Commit dev-policy.json
       run: |
