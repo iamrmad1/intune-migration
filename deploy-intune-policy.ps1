@@ -30,7 +30,7 @@ $headers = @{
 # Step 3: Define Windows Defender configuration profile
 $body = @{
     "@odata.type" = "#microsoft.graph.windows10EndpointProtectionConfiguration"
-    displayName   = "Windows Defender Policy 2"
+    displayName   = "New Policy for CICD"
     description   = "Created via PowerShell and Graph API"
     defenderScanScheduleType         = "fullScan"
     defenderScanType                 = "quick"
