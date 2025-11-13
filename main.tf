@@ -1,10 +1,21 @@
-resource "microsoft365wp_device_compliance_policy_windows10" "example" {
-  display_name = "Windows 10 Compliance Policy"
-  description  = "Ensure Defender and BitLocker are enabled"
+data "msgraph_resource" "get_oma_uri_profile" {
+  url = "deviceManagement/deviceConfigurations/55ea0269-239e-49e6-80ee-b61bf3cf0cb1"
 
-  password_required = true
-  password_minimum_length = 8
+  response_export_values = {
+    all        = "@"
+    display    = "displayName"
+    profile_id = "id"
+  }
+}
 
-  defender_enabled = true
-  bitlocker_enabled = true
+output "retrieved_profile_name" {
+  value = data.msgraph_resource.get_oma_uri_profile.output.display
+}
+
+output "retrieved_profile_id" {
+  value = data.msgraph_resource.get_oma_uri_profile.output.profile_id
+}
+
+output "retrieved_profile_full" {
+  value = data.msgraph_resource.get_oma_uri_profile.output.all
 }
