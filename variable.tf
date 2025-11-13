@@ -1,15 +1,14 @@
-variable "client_id" {
-  description = "Azure AD App Registration Client ID"
+variable "tenant_id" {
   type        = string
+  description = "Azure AD tenant ID"
+}
+
+variable "client_id" {
+  type        = string
+  description = "App registration client ID"
 }
 
 variable "client_secret" {
-  description = "Azure AD App Registration Client Secret"
   type        = string
-  sensitive   = true
-}
-
-variable "tenant_id" {
-  description = "Azure AD Tenant ID"
-  type        = string
+  description = "App registration client secret"
 }
