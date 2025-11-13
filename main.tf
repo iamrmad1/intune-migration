@@ -1,21 +1,30 @@
-data "msgraph_resource" "get_oma_uri_profile" {
-  url = "deviceManagement/deviceConfigurations/55ea0269-239e-49e6-80ee-b61bf3cf0cb1"
+resource "msgraph_resource" "oma_uri_profile" {
+  url = "deviceManagement/deviceConfigurations"
+  body = {
+    "@odata.type" = "#microsoft.graph.windows10CustomConfiguration"
+    displayName   = "Disable OneDrive Sync 2"
+    description   = "Custom OMA-URI to disable OneDrive NGSC"
+
+    omaSettings = [
+      {
+        "@odata.type" = "#microsoft.graph.omaSettingInteger"
+        displayName   = "DisableFileSyncNGSC"
+        omaUri        = "./Device/Vendor/MSFT/Policy/Config/OneDrive/DisableFileSyncNGSC"
+        value         = 1
+      }
+    ]
+  }
 
   response_export_values = {
-    all        = "@"
-    display    = "displayName"
-    profile_id = "id"
+    config_id = "id"
+    all       = "@"
   }
 }
 
-output "retrieved_profile_name" {
-  value = data.msgraph_resource.get_oma_uri_profile.output.display
+output "config_id" {
+  value = msgraph_resource.oma_uri_profile.output.config_id
 }
 
-output "retrieved_profile_id" {
-  value = data.msgraph_resource.get_oma_uri_profile.output.profile_id
-}
-
-output "retrieved_profile_full" {
-  value = data.msgraph_resource.get_oma_uri_profile.output.all
+output "resource_url" {
+  value = msgraph_resource.oma_uri_profile.resource_url
 }
